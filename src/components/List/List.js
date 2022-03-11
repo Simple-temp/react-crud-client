@@ -7,7 +7,7 @@ const List = () => {
     const [todo, setTodo] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/gettodo`)
+        fetch(`https://node-crud-serve.herokuapp.com/gettodo`)
             .then(res => res.json())
             .then(data => setTodo(data))
     }, [])

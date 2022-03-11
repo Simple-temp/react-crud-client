@@ -24,7 +24,7 @@ const Form = () => {
         formData.append('title', info.title)
         formData.append('msg', info.msg)
       
-        fetch('http://localhost:4000/posttodo', {
+        fetch('https://node-crud-serve.herokuapp.com/posttodo', {
           method: 'POST',
           body: formData
         })

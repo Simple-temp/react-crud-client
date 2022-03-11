@@ -28,7 +28,7 @@ const ShowList = ({ item }) => {
     }
 
     const deleteItem = (id) => {
-        fetch(`http://localhost:4000/deleteitem/${id}`, {
+        fetch(`https://node-crud-serve.herokuapp.com/deleteitem/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -43,7 +43,7 @@ const ShowList = ({ item }) => {
 
     const getItem = (id) => {
         openModal()
-        fetch(`http://localhost:4000/getitem/${id}`)
+        fetch(`https://node-crud-serve.herokuapp.com/getitem/${id}`)
             .then((response) => response.json())
             .then((data) => setSelectedItem(data));
     }
@@ -70,7 +70,7 @@ const ShowList = ({ item }) => {
         formData.append('title', info.title)
         formData.append('msg', info.msg)
       
-        fetch(`http://localhost:4000/updateitem/${id}`, {
+        fetch(`https://node-crud-serve.herokuapp.com/updateitem/${id}`, {
           method: 'PATCH',
           body: formData
         })
