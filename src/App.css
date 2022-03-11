@@ -35,11 +35,28 @@ p{
   display:block
 }
 .todo-footer i{
-  color:blue;
+  color:rgb(0, 0, 0);
   font-size:20px;
   cursor:pointer;
 }
 .list .row 
 {
   --bs-gutter-x: 0.5rem;
+}
+.fa-xmark{
+  font-size:22px;
+  border:1px solid #000;
+  padding:4px 8px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.todo{
+  border-radius:7px;
+  -webkit-border-radius:7px;
+  -moz-border-radius:7px;
+  -ms-border-radius:7px;
+  -o-border-radius:7px;
 }
