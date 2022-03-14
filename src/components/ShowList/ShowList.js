@@ -28,7 +28,7 @@ const ShowList = ({ item }) => {
     }
 
     const deleteItem = (id) => {
-        fetch(`http://localhost:4000/deleteitem/${id}`, {
+        fetch(`https://crud-server-01.herokuapp.com/deleteitem/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -43,7 +43,7 @@ const ShowList = ({ item }) => {
 
     const getItem = (id) => {
         openModal()
-        fetch(`http://localhost:4000/getitem/${id}`)
+        fetch(`https://crud-server-01.herokuapp.com/getitem/${id}`)
             .then((response) => response.json())
             .then((data) => setSelectedItem(data));
     }
@@ -62,7 +62,7 @@ const ShowList = ({ item }) => {
         setFile(newfile)
     }
 
-    const submitForm = (id) =>{
+    const submitForm = (e,id) =>{
         
         const formData = new FormData()
         formData.append('file', file)
@@ -70,19 +70,20 @@ const ShowList = ({ item }) => {
         formData.append('title', info.title)
         formData.append('msg', info.msg)
       
-        fetch(`http://localhost:4000/updateitem/${id}`, {
+        fetch(`https://crud-server-01.herokuapp.com/updateitem/${id}`, {
           method: 'PATCH',
           body: formData
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          window.location.reload();
           alert ("Update Information")
+          console.log(data)
         })
         .catch(error => {
           console.error(error)
         })
-
+        e.preventDefault()
         console.log(info,file,id)
     }
 
@@ -110,7 +111,7 @@ const ShowList = ({ item }) => {
                         >
                             <i class="fa-solid fa-xmark" onClick={closeModal}></i>
                             <h3 className='mt-3'>Update your information</h3>
-                            <form action="" className='form' onSubmit={()=>submitForm(_id)}>
+                            <form action="" className='form' onSubmit={(e)=>submitForm(e,_id)}>
                                 <div className="col-12 mt-3">
                                     <label >Name</label>
                                     <input required type="text" onBlur={handleBlur} name="name" placeholder='Name' className='w-100 d-block field' />

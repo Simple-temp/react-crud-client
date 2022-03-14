@@ -7,7 +7,7 @@ const Home = () => {
 
     const allDelete = () => {
 
-        fetch(`http://localhost:4000/deleteAllItem`, {
+        fetch(`https://crud-server-01.herokuapp.com/deleteAllItem`, {
             method: "DELETE"
         })
             .then(res => res.json())

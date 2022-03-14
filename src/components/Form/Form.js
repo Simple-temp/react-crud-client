@@ -2,45 +2,47 @@ import React, { useState } from 'react';
 
 const Form = () => {
 
-    const [info,setInfo] = useState({})
-    const [file,setFile] = useState(null)
+    const [info, setInfo] = useState({})
+    const [file, setFile] = useState(null)
 
-    const handleBlur = (e) =>{
-        const newInfo = {...info}
+    const handleBlur = (e) => {
+        const newInfo = { ...info }
         newInfo[e.target.name] = e.target.value
         setInfo(newInfo)
     }
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         const newfile = e.target.files[0]
         setFile(newfile)
     }
 
-    const submitForm = () =>{
-        
+    const submitForm = (e) => {
+
         const formData = new FormData()
         formData.append('file', file)
         formData.append('name', info.name)
         formData.append('title', info.title)
         formData.append('msg', info.msg)
-      
-        fetch('http://localhost:4000/posttodo', {
-          method: 'POST',
-          body: formData
+
+        fetch('https://crud-server-01.herokuapp.com/posttodo', {
+            method: 'POST',
+            body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          alert ("add todo")
-        })
-        .catch(error => {
-          console.error(error)
-        })
-        console.log(info,file)
+            .then(response => response.json())
+            .then(data => {
+                window.location.reload();
+                alert("add todo")
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+        e.preventDefault()
+        console.log(info, file)
     }
 
     return (
-        <form action="" className='form' onSubmit={submitForm}>
+        <form action="" className='form' onSubmit={(e) => submitForm(e)}>
             <div className="col-12 mt-3">
                 <label >Name</label>
                 <input required onBlur={handleBlur} type="text" name="name" placeholder='Name' className='w-100 d-block field' />
