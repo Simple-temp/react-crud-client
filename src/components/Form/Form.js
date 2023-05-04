@@ -24,7 +24,7 @@ const Form = () => {
         formData.append('title', info.title)
         formData.append('msg', info.msg)
 
-        fetch('https://crud-server-01.herokuapp.com/posttodo', {
+        fetch('https://crud-rl31.onrender.com/posttodo', {
             method: 'POST',
             body: formData
         })
